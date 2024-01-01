@@ -22,7 +22,7 @@ user_agents = [
 def work(line):
     s = 1
     while True:
-        visitor, request1, cookie = line.strip().split(':')
+        visitor, request1, idi, cookie = line.strip().split(':')
         sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
         from twocaptcha import TwoCaptcha
@@ -56,7 +56,7 @@ def work(line):
                 'h-captcha-response': gh,
                 'visitorId': f'{visitor}',
                 'requestId': f'{request1}',
-                'item_id': '28072'
+                'item_id': f'{idi}'
             }
 
             headers = {
@@ -84,14 +84,17 @@ def work(line):
             if response.status_code == 200:
                 print(f"Поток: {pot}: Заклеймлино наград: {s}  | Автор Rudy Crypto - https://t.me/rudtyt")
             else:
-                print("Хуй знает, но почему-то не заклеймилось")
+                print(response.text)
+                print(response.status_code)
 
             s = s + 1
             time.sleep(300)
 
 threads = []
+
 with open('info.txt', 'r') as file:
     for line in file:
+        work(line)
         thread = threading.Thread(target=work, args=(line,))
         threads.append(thread)
         thread.start()
