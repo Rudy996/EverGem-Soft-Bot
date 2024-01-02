@@ -52,11 +52,8 @@ def work(line):
 
             url = 'https://evergem.io/claim?redirect_to=/game'
             payload = {
-                # 'g-recaptcha-response': gh,
-                'h-captcha-response': gh,
-                'visitorId': f'{visitor}',
-                'requestId': f'{request1}',
-                'item_id': f'{idi}'
+                'item_id': f'{idi}',
+                'h-captcha-response': gh
             }
 
             headers = {
