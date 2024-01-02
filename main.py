@@ -22,7 +22,7 @@ user_agents = [
 def work(line):
     s = 1
     while True:
-        idi, cookie = line.strip().split(':')
+        idi, castl, cookie = line.strip().split(':')
         sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
         from twocaptcha import TwoCaptcha
@@ -53,7 +53,8 @@ def work(line):
             url = 'https://evergem.io/claim?redirect_to=/game'
             payload = {
                 'item_id': f'{idi}',
-                'h-captcha-response': gh
+                'h-captcha-response': gh,
+                'castle_request_token': castl
             }
 
             headers = {
