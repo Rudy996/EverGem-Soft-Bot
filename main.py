@@ -22,7 +22,7 @@ user_agents = [
 def work(line):
     s = 1
     while True:
-        visitor, request1, idi, cookie = line.strip().split(':')
+        idi, cookie = line.strip().split(':')
         sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
         from twocaptcha import TwoCaptcha
